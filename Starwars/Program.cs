@@ -162,7 +162,7 @@ namespace Starwars
             Console.WriteLine("________________________________");
 
 
-            Regex reg = new Regex("([aeiou])\\1");
+            Regex reg = new Regex("([aeiou])\\1"); //Missing Y????
             //resultList = planets.Any(x => reg.Match( x.Name ).Value != );
             resultList = planets.Where(x => reg.IsMatch(x.Name));
             Console.WriteLine("Opgave 15");

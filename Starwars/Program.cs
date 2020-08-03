@@ -128,8 +128,55 @@ namespace Starwars
             Console.WriteLine("________________________________");
 
 
-            resultList = planets.Except(planets, new RotationComparer());
+            resultList = planets.Where(x => (x.Name.ToUpper().StartsWith("A") || x.Name.ToUpper().EndsWith("S")));
+            var resultListb = planets.Where(x => (x.Terrain != null && x.Terrain.Contains("rainforests")));
+            var resultListFinal = resultList.Union(resultListb);
             Console.WriteLine("Opgave 12");
+            Console.WriteLine("________________________________");
+            foreach (var result in resultListFinal)
+            {
+                Console.WriteLine(result.Name);
+            }
+            Console.WriteLine("________________________________");
+
+
+            resultList = planets.Where(x => (x.Terrain != null && x.Terrain.Any(s => s.Contains("desert"))));
+            Console.WriteLine("Opgave 13");
+            Console.WriteLine("________________________________");
+            foreach (var result in resultList)
+            {
+                Console.WriteLine(result.Name);
+            }
+            Console.WriteLine("________________________________");
+
+
+            resultList = planets.Where(x => (x.Terrain != null && x.Terrain.Any(s => s.ToLower().Contains("swamp"))))
+                                .OrderBy(x => x.RotationPeriod)
+                                .ThenBy(x => x.Name);
+            Console.WriteLine("Opgave 14");
+            Console.WriteLine("________________________________");
+            foreach (var result in resultList)
+            {
+                Console.WriteLine(result.Name);
+            }
+            Console.WriteLine("________________________________");
+
+
+            Regex reg = new Regex("([aeiou])\\1");
+            //resultList = planets.Any(x => reg.Match( x.Name ).Value != );
+            resultList = planets.Where(x => reg.IsMatch(x.Name));
+            Console.WriteLine("Opgave 15");
+            Console.WriteLine("________________________________");
+            foreach (var result in resultList)
+            {
+                Console.WriteLine(result.Name);
+            }
+            Console.WriteLine("________________________________");
+
+            Regex reg2 = new Regex("([klrn])\\1");
+            //resultList = planets.Any(x => reg.Match( x.Name ).Value != );
+            resultList = planets.Where(x => reg2.IsMatch(x.Name)).OrderByDescending(x => x.Name);
+            Console.WriteLine("Opgave 16");
             Console.WriteLine("________________________________");
             foreach (var result in resultList)
             {

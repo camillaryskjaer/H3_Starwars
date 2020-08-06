@@ -34,7 +34,8 @@ namespace Starwars
             Console.WriteLine("________________________________");
 
 
-            resultList = planets.Where(x => x.Name.Length > 9 && x.Name.Length < 15);
+            //Det er altid en god ide at indkapsle udtryk i paranteser
+            resultList = planets.Where(x => (x.Name.Length > 9) && (x.Name.Length < 15));
             Console.WriteLine("Opgave 3");
             Console.WriteLine("________________________________");
             foreach (var result in resultList)
@@ -44,6 +45,7 @@ namespace Starwars
             Console.WriteLine("________________________________");
 
 
+      
             resultList = planets.Where(x => x.Name[1] == 'a' && x.Name.EndsWith("e"));
             Console.WriteLine("Opgave 4");
             Console.WriteLine("________________________________");
@@ -83,7 +85,7 @@ namespace Starwars
             }
             Console.WriteLine("________________________________");
 
-
+            //Fint opstillet, det gør din kode læsevenlig at du bryder på flere linier
             resultList = planets.Where(x => (x.RotationPeriod < 30 || x.SurfaceWater > 50) && x.Name.ToLower().Contains("ba"))
                                 .OrderBy(x => x.Name)
                                 .ThenBy(x => x.SurfaceWater)
